@@ -13,22 +13,33 @@ namespace LibrarySystem.Models
         public int BookId { get; set; }
 
         [ForeignKey("BookId")]
-        public required Book Book { get; set; }  // Required to ensure it is assigned
+        public required Book Book { get; set; }
 
         [Required]
         public int MemberId { get; set; }
 
         [ForeignKey("MemberId")]
-        //public required Member Member { get; set; }  // Required to ensure it is assigned
+        public required Member Member { get; set; }  // Add this to resolve the error
 
         [Required]
-        public DateTime LoanDate { get; set; } = DateTime.UtcNow;  // Default to current time
+        public DateTime LoanDate { get; set; } = DateTime.UtcNow;
 
-        public DateTime? ReturnDate { get; set; }  // Nullable, as the book may not be returned yet
+        public DateTime? ReturnDate { get; set; }
 
         [Required]
-        public bool IsReturned { get; set; } = false;  // Default to false
+        public bool IsReturned { get; set; } = false;
 
-        public DateTime DueDate => LoanDate.AddDays(14);  // Assuming a 2-week loan period
+        public DateTime DueDate => LoanDate.AddDays(14);
+    }
+}
+namespace LibrarySystem.DTOs
+{
+    public class LoanDTO
+    {
+        public int LoanId { get; set; }
+        public required string BookTitle { get; set; }
+        public required string MemberName { get; set; }  // Ensure this is correctly referenced
+        public DateTime LoanDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
     }
 }

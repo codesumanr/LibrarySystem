@@ -1,0 +1,35 @@
+﻿@model LibrarySystem.Models.Loan
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Loan</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Book</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Book.Title)</dd>
+
+        <dt class="col-sm-2">Member</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Member.FirstName) @Html.DisplayFor(model => model.Member.LastName)</dd>
+
+        <dt class="col-sm-2">Loan Date</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.LoanDate)</dd>
+
+        <dt class="col-sm-2">Due Date</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.DueDate)</dd>
+
+        <dt class="col-sm-2">Return Date</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ReturnDate)</dd>
+
+        <dt class="col-sm-2">Returned</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.IsReturned)</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LoanId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace LibrarySystem.Models
 {
@@ -9,16 +10,16 @@ namespace LibrarySystem.Models
 
         [Required]
         [StringLength(100)]
-        public required string FirstName { get; set; }
+        public required string Name { get; set; }  // ✅ Fix: Add Name property
 
-        [Required]
-        [StringLength(100)]
-        public required string LastName { get; set; }
-
-        [StringLength(500)]
-        public string? Biography { get; set; } // Optional
-
-        // Navigation Property: One author can have multiple books
-        public List<Book> Books { get; set; } = new();
+        public virtual ICollection<Book>? Books { get; set; }
+    }
+}
+namespace LibrarySystem.DTOs
+{
+    public class AuthorDTO
+    {
+        public int AuthorId { get; set; }
+        public required string Name { get; set; }
     }
 }
